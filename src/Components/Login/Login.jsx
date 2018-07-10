@@ -6,13 +6,13 @@ import {
   Message,
   Segment
 } from 'semantic-ui-react';
-import './Register.css';
+import './Login.css';
 import { setLocation } from '../../routing';
 
 export default class Register extends Component {
-  login = (e) => {
+  register = (e) => {
     e.preventDefault();
-    setLocation('login');
+    setLocation('register');
   }
 
   render() {
@@ -27,15 +27,14 @@ export default class Register extends Component {
           <Segment stacked={true}>
             <Form.Input fluid={true} icon='user' iconPosition='left' placeholder='Username'/>
             <Form.Input fluid={true} icon='lock' iconPosition='left' placeholder='Password' type='password'/>
-            <Form.Input fluid={true} icon='lock' iconPosition='left' placeholder='Reenter password' type='password'/>
 
             <Button primary fluid={true} size='large'>
-              Register
+              Login
             </Button>
           </Segment>
         </Form>
         <Message>
-          <a href="#" onClick={this.login}>Already registered?</a>
+          <a href="#" onClick={this.register}>Need an account?</a>
         </Message>
       </Grid.Column>
     </Grid>);

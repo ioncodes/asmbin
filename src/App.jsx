@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import NavBar from './Components/NavBar/NavBar';
 import Register from './Components/Register/Register';
+import Login from './Components/Login/Login';
 import { store } from './routing';
 
 class App extends Component {
@@ -29,6 +30,7 @@ class App extends Component {
       <div>
         <NavBar isLoggedIn={false}/>
         { this.state.register ? <Register/> : null }
+        { this.state.login ? <Login/> : null }
       </div>
     );
   }
