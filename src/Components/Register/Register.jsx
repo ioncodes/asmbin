@@ -8,8 +8,39 @@ import {
 } from 'semantic-ui-react';
 import './Register.css';
 import { setLocation } from '../../routing';
+import axios from 'axios';
 
 export default class Register extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      username: '',
+      password: ''
+    };
+  }
+
+  handleClick() {
+    axios.post('http://localhost:1337/api/user/register', {
+      username: this.state.username,
+      password: this.state.password
+    })
+    .then(response => {
+      console.log(response);
+    })
+    .catch(error => {
+      console.log(error);
+    });
+  }
+
+  handleChange(e) {
+    if(e.target.id === 'username') {
+      this.setState({ username: e.target.value });
+    } else {
+      this.setState({ password: e.target.value });
+    }
+  }
+
   login = (e) => {
     e.preventDefault();
     setLocation('login');
@@ -25,11 +56,10 @@ export default class Register extends Component {
         }}>
         <Form size='large'>
           <Segment stacked={true}>
-            <Form.Input fluid={true} icon='user' iconPosition='left' placeholder='Username'/>
-            <Form.Input fluid={true} icon='lock' iconPosition='left' placeholder='Password' type='password'/>
-            <Form.Input fluid={true} icon='lock' iconPosition='left' placeholder='Reenter password' type='password'/>
+            <Form.Input onChange={this.handleChange.bind(this)} id='username' fluid={true} icon='user' iconPosition='left' placeholder='Username'/>
+            <Form.Input onChange={this.handleChange.bind(this)} id='password' fluid={true} icon='lock' iconPosition='left' placeholder='Password' type='password'/>
 
-            <Button primary fluid={true} size='large'>
+            <Button onClick={this.handleClick.bind(this)} primary fluid={true} size='large'>
               Register
             </Button>
           </Segment>
