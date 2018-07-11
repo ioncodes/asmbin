@@ -5,7 +5,14 @@ import { setLocation } from '../../../routing';
 export default class LoggedIn extends Component {
   state = { activeItem: 'myScripts' };
 
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name });
+  handleItemClick = (e, { name }) => {
+    if(name === 'myScripts') {
+      setLocation('myscripts');
+    } else if(name === 'createNewScript') {
+      setLocation('createnewscript');
+    }
+    this.setState({ activeItem: name });
+  }
 
   logout = (e) => {
     window.localStorage.removeItem('token');
