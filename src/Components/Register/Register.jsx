@@ -48,7 +48,7 @@ export default class Register extends Component {
 
   render() {
     return (
-      <Grid textAlign='center' style={{
+      <Grid className='fade-in' textAlign='center' style={{
         height: '100%'
       }} verticalAlign='middle'>
         <Grid.Column style={{
