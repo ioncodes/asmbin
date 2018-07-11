@@ -4,7 +4,6 @@ import NavBar from './Components/NavBar/NavBar';
 import Register from './Components/Register/Register';
 import Login from './Components/Login/Login';
 import { store } from './routing';
-import cookie from 'react-cookies';
 import axios from 'axios';
 
 class App extends Component {
@@ -13,7 +12,7 @@ class App extends Component {
     this.state = { register: false, login: false, isLoggedIn: false }
 
     axios.get('http://localhost:1337/api/user/verify', {
-      headers: {'token': cookie.load('token')}})
+      headers: {'token': window.localStorage.getItem('token')}})
       .then(response => {
         if(response.data.status !== 'error') {
           this.setState({isLoggedIn: true, register: false, login: false});

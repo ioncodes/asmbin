@@ -26,7 +26,7 @@ export default class Register extends Component {
       password: this.state.password
     })
     .then(response => {
-      document.cookie = 'token=' + response.data.token;
+      window.localStorage.setItem('token', response.data.token);
       setLocation('loggedin');
     })
     .catch(error => {
