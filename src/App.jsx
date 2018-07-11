@@ -35,6 +35,9 @@ class App extends Component {
         case 'loggedin':
           this.setState({isLoggedIn: true, register: false, login: false});
           break;
+        case 'loggedout':
+          this.setState({isLoggedIn: false, register: false, login: false});
+          break;
         default:
           break;
       }
