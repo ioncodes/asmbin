@@ -6,12 +6,12 @@ import { Grid } from 'semantic-ui-react';
 import 'brace/mode/assembly_x86';
 import 'brace/theme/monokai';
 
-export default class NavBar extends Component {
-  render() {
-    onChange(value) {
-      console.log('change', value);
-    }
+export default class Editor extends Component {
+  onChange = (value) => {
+    console.log('change', value);
+  }
 
+  render() {
     return (
       <Grid style={{
           marginLeft: '5px',
@@ -21,7 +21,7 @@ export default class NavBar extends Component {
           <AceEditor
             mode='assembly_x86'
             theme='monokai'
-            onChange={onChange}
+            onChange={this.onChange}
             name='editor'
             editorProps={{$blockScrolling: true}}
             width='100%'
