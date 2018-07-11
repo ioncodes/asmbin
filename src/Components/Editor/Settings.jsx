@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Dropdown, Grid, Modal, Button } from 'semantic-ui-react';
-import { store, toggleSettings } from './events';
+import { settingsStore, toggleSettings } from './events';
 
 const languages = [
   {
@@ -28,24 +28,34 @@ export default class Settings extends Component {
 
     this.state = { open: false };
 
-    store.subscribe(() => {
-      this.setState({open: store.getState()});
+    settingsStore.subscribe(() => {
+      this.setState({open: settingsStore.getState()});
     });
   }
 
   close = () => toggleSettings();
 
+  save = () => toggleSettings();
+
   render() {
     return (
-      <Modal size={'tiny'} open={this.state.open} onClose={this.close}>
+      <Modal style={{height:'100px' /* this fixes the height bug; can be any px value */}} size={'tiny'} open={this.state.open} onClose={this.close}>
         <Modal.Header>Settings</Modal.Header>
         <Modal.Content>
-          <Dropdown placeholder='Language' fluid selection options={languages} />
-          <Dropdown placeholder='Language' fluid selection options={languages} />
+          <Grid>
+            <Grid.Row>
+              <Grid.Column width={8}>
+                <Dropdown placeholder='Language' fluid selection options={languages} />
+              </Grid.Column>
+              <Grid.Column width={8}>
+                <Dropdown placeholder='Modes' fluid selection options={modes} />
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
         </Modal.Content>
         <Modal.Actions>
-          <Button negative>No</Button>
-          <Button positive icon='checkmark' labelPosition='right' content='Yes' />
+          <Button onClick={this.close} negative>Reset</Button>
+          <Button onClick={this.save} positive icon='checkmark' labelPosition='right' content='Save' />
         </Modal.Actions>
       </Modal>
     );
