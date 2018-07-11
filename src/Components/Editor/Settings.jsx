@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Dropdown, Grid, Modal, Button } from 'semantic-ui-react';
-import { store } from './events';
+import { store, toggleSettings } from './events';
 
 const languages = [
   {
@@ -33,23 +33,15 @@ export default class Settings extends Component {
     });
   }
 
-  close = () => this.setState({ open: false});
+  close = () => toggleSettings();
 
   render() {
     return (
       <Modal size={'tiny'} open={this.state.open} onClose={this.close}>
         <Modal.Header>Settings</Modal.Header>
         <Modal.Content>
-          <Grid>
-            <Grid.Row>
-              <Grid.Column width={8}>
-                <Dropdown placeholder='Language' fluid selection options={languages} />
-              </Grid.Column>
-              <Grid.Column width={8}>
-                <Dropdown placeholder='Mode' fluid selection options={modes} />
-              </Grid.Column>
-            </Grid.Row>
-          </Grid>
+          <Dropdown placeholder='Language' fluid selection options={languages} />
+          <Dropdown placeholder='Language' fluid selection options={languages} />
         </Modal.Content>
         <Modal.Actions>
           <Button negative>No</Button>

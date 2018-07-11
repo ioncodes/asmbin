@@ -41,41 +41,43 @@ export default class Editor extends Component {
 
   render() {
     return (
-      <Grid style={{
-          marginLeft: '5px',
-          marginRight: '5px',
-        }}>
-        <Settings></Settings>
-        <Grid.Row>
-          <Grid.Column width={8}>
-            <AceEditor
-              mode='assembly_x86'
-              theme='monokai'
-              onChange={this.onChange}
-              name='editor'
-              editorProps={{$blockScrolling: Infinity}}
-              width='100%'
-              fontSize={24}
-            />
-          </Grid.Column>
-          <Grid.Column width={8}>
-            <AceEditor
-              mode='assembly_x86'
-              theme='monokai'
-              name='bytes'
-              editorProps={{$blockScrolling: Infinity}}
-              width='100%'
-              fontSize={24}
-              readOnly={true}
-            />
-          </Grid.Column>
-        </Grid.Row>
-        <Grid.Row>
-          <Grid.Column width={2}>
-            <Button onClick={this.showSettings}>Settings</Button>
-          </Grid.Column>
-        </Grid.Row>
-      </Grid>
+      <div>
+        <Settings/>
+        <Grid style={{
+            marginLeft: '5px',
+            marginRight: '5px',
+          }}>
+          <Grid.Row>
+            <Grid.Column width={8}>
+              <AceEditor
+                mode='assembly_x86'
+                theme='monokai'
+                onChange={this.onChange}
+                name='editor'
+                editorProps={{$blockScrolling: Infinity}}
+                width='100%'
+                fontSize={24}
+              />
+            </Grid.Column>
+            <Grid.Column width={8}>
+              <AceEditor
+                mode='assembly_x86'
+                theme='monokai'
+                name='bytes'
+                editorProps={{$blockScrolling: Infinity}}
+                width='100%'
+                fontSize={24}
+                readOnly={true}
+              />
+            </Grid.Column>
+          </Grid.Row>
+          <Grid.Row>
+            <Grid.Column width={2}>
+              <Button onClick={this.showSettings}>Settings</Button>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+      </div>
     );
   }
 }
